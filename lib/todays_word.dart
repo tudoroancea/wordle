@@ -5,7 +5,8 @@ import 'package:intl/intl.dart';
 
 typedef Dictionary = Map<String, dynamic>;
 
-Future<Dictionary> getDictionary() {
+Future<Dictionary> getDictionary() async {
+  // await Future.delayed(const Duration(seconds: 10));
   return rootBundle.loadString('assets/words.json').then((jsonString) {
     var json = jsonDecode(jsonString);
     return json;

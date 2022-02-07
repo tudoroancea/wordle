@@ -22,7 +22,7 @@ So don't spoil yourselves ! 🙃
 
 Some features I would like to implement :
 
-[ ] Improve UI  
+[ ] Improve UI  (type directly in the grid and not in a text field, add animations for colors, add celebration animation for winning)
 [ ] Store statistics on device to see score evolution  
 [ ] Add state restoration to make sure one cannot quit the app and start over to get a better score the same day  
 [ ] Add light and dark themes  

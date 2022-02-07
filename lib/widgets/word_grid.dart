@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:wordle/todays_word.dart';
+import 'package:wordle/widgets/letter.dart';
 
 class WordGrid extends StatefulWidget {
   const WordGrid({Key? key}) : super(key: key);
@@ -72,18 +73,12 @@ class _WordGridState extends State<WordGrid> {
   @override
   Widget build(BuildContext context) {
     return Center(
+      // FIXME : the WordGrid is too small for iPhone SE2
       child: SizedBox(
-        width: 350.0,
-        height: 650.0,
+        width: 300.0,
+        height: 500.0,
         child: Column(
           children: [
-            // Text(getTodaysWord(Provider.of<Dictionary>(context))),
-            // ElevatedButton(
-            //   onPressed: () => setState(() {
-            //     _words = <String>[];
-            //   }),
-            //   child: const Icon(Icons.refresh),
-            // ),
             GridView.count(
               primary: false,
               padding: const EdgeInsets.all(10.0),
@@ -114,62 +109,32 @@ class _WordGridState extends State<WordGrid> {
                           return 'Please enter a word';
                         } else if (value.length != 5) {
                           return 'Please enter a 5 letter word';
+                        } else if (value.contains(' ')) {
+                          return 'Please enter a word without spaces';
                         } else {
                           return null;
                         }
                       },
                     ),
                   )
-                : hasLost()
-                    ? const Text('You lost')
-                    : const Text('You won'),
+                : SizedBox(
+                    height: 60.0,
+                    child: Center(
+                      child: hasLost()
+                          ? const Text(
+                              '🙁 You lost 🙁',
+                              style: TextStyle(fontSize: 30.0),
+                            )
+                          : const Text(
+                              '🎉 You won 🎉',
+                              style: TextStyle(
+                                  fontSize: 30.0, fontWeight: FontWeight.bold),
+                            ),
+                    ),
+                  ),
           ],
         ),
       ),
-    );
-  }
-}
-
-enum LetterStatus {
-  correctSpot,
-  wrongSpot,
-  completelyWrong,
-  noStatus,
-}
-
-Color fromStatus(LetterStatus status) {
-  switch (status) {
-    case LetterStatus.completelyWrong:
-      return Colors.grey;
-    case LetterStatus.correctSpot:
-      return Colors.green;
-    case LetterStatus.noStatus:
-      return Colors.white;
-    case LetterStatus.wrongSpot:
-      return Colors.yellow;
-  }
-}
-
-class Letter extends StatelessWidget {
-  final String value;
-  final LetterStatus status;
-
-  const Letter({
-    Key? key,
-    required this.value,
-    required this.status,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Center(
-        child: Text(
-          value,
-          style: const TextStyle(fontSize: 20.0),
-        ),
-      ),
-      color: fromStatus(status),
     );
   }
 }
