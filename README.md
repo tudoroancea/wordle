@@ -13,7 +13,8 @@ They offer possibilities to develop cross-platform applications for mobile, web 
 If you want to try the game on your mobile device, you can install the Flutter SDK and run the game on your favorite device following these steps : https://docs.flutter.dev/get-started/install  
 
 ## ⚠️ Disclaimer
-The word list is currently hardcoded in a JSON file you can find in the folder `assets`. In the future (see roadmap section), the list would stored remotely (eg with Firebase) and retrieved via API calls.
+The word list is currently hardcoded in a JSON file you can find in the folder `assets` (and in the Python script in the `scripts` folder used to geenrate it).
+In the future (see roadmap section), the list would stored remotely (eg with Firebase) and retrieved via API calls.
 
 So don't spoil yourselves ! 🙃
 
